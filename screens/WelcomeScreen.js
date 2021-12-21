@@ -16,7 +16,7 @@ const WelcomeScreen = props => {
           <Text> Bienvenido </Text>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
-              onPress={() => props.navigation.navigate('Login')}
+              onPress={() => props.navigation.navigate('Home')}
               title="Conectarse"
             />
           </View>

@@ -6,32 +6,38 @@ import {
   Button
 } from 'react-native';
 
+import Card from '../components/Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { loggedOut } from '../store/actions';
+
 
 
 const HomeScreen = props => {
 
+  const login = useSelector(state => state.loggedInReducer)
+  const dispatch = useDispatch();
+
+  const desconectarseInputHandler = (e) => {
+  
+      e.preventDefault();
+      dispatch(loggedOut(false));
+    
+  };
 
   return (
     
-      <View style={styles.screen}>
-        <Text> Home Screen </Text>
-          {/* <View style={styles.buttonContainer}>
+    <View style={styles.screen}>
+      <Card style={styles.inputContainer}>
+          <View style={styles.buttonContainer}>
             <View style={styles.button}>
               <Button
-                title="Reset"
-                onPress={}
-                
+                title="Desconectarse"
+                onPress={desconectarseInputHandler}
               />
             </View>
-            <View style={styles.button}>
-              <Button
-                title="Confirm"
-                onPress={}
-                
-              />
-            </View>
-          </View> */}
-      </View>
+          </View>
+      </Card>
+  </View>
    
   );
 };
@@ -41,22 +47,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-},
-//   title: {
-//     fontSize: 20,
-//     marginVertical: 10,
-//     fontFamily: 'open-sans-bold'
-//   },
-  
-//   buttonContainer: {
-//     flexDirection: 'row',
-//     width: '100%',
-//     justifyContent: 'space-between',
-//     paddingHorizontal: 15
-//   },
-//   button: {
-//     width: 100
-//   }
- });
+  },
+  inputContainer: {
+   
+    width: 300,
+    maxWidth: '80%',
+    alignItems: 'center',
+    padding: 10,
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15
+  },
+  button: {
+    width: '50%',
+    padding: 10,
+  },
+});
 
 export default HomeScreen;
